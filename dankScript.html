@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Miligram Framework Stuff -->
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+    <style>
+        .milligram {
+            color: #1b1a1c;
+        }
+    </style>
+
+</head>
+
+<body style="height: 2000px; background-image: linear-gradient(0deg, #daf7cc 0%, #c5ebb2 46%);">
+
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h6 style="text-align: center;">the</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h1 style="text-align: center;">DankScript</h1>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <label for="original">Put your stinky text here:</label>
+                <textarea name="original" id="original" cols="30" rows="10"></textarea>
+            </div>
+            <div class="column">
+                <label for="danknized">- A N D - G E T - D A N K - T E X T - H E R E -</label>
+                <textarea name="danknized" id="danknized" cols="30" rows="10" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h5>How to use:</h5>
+                <p>Write anything on the left box and voilá! <br>Alternatively, you can click on the "Give me some random dankness!" button.</p>
+            </div>
+            <div class="column">
+                <h5>- O U T - O F - I D E A S ? -</h5>
+                <button class="button button-outline" name="randomStringBtn" id="randomStringBtn">Give me some random dankness!</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        /*
+            The DankFormula(tm):
+                Add '- ' on the beggining and ' -' on the end of the string
+                Replace spaces with ' - '
+                Add a space in between each letter
+
+            Example:
+            Hello World
+            - H E L L O - W O R L D -
+        */
+
+        // The DankFormula(tm) in action:
+        function generateDankness(){
+            let originalCopy = original.value;// I'm not sure if it's necessary...
+            originalCopy = originalCopy.toUpperCase();// ... because this may affect the original string
+
+            // Initiate the dankness:
+
+            danknized.value = '- '; // Add '- ' in the beggining
+
+            for (let letter of originalCopy) { // Foreach character
+
+                switch (letter) { // Why I did a switch instead of a if? I dunno.
+                    case ' ':
+                        danknized.value += ' - '; // Replace spaces with ' - '
+                        break;
+
+                    default:
+                        danknized.value += letter + ' '; // Add a space in between each letter
+                        break;
+                }
+            }
+            danknized.value += ' -';// Add ' -' in the end
+        }
+
+        // Listeners to make everything work
+        original.onkeyup = () => { // Automatically change the text
+            generateDankness();
+        }
+
+        let dankArray = [ // Add anything here to make it avaliable on the Dankness button
+            'Out of Ideas',
+            'Unsexy toughts',
+            'It\'s a handgun',
+            'Bed goes up',
+            'I said french fries',
+            'Max power',
+            'The goggles do nothing',
+            'Mr Sparkle'
+        ];
+
+        randomStringBtn.onclick = () => { // Make the Dankness button work
+            let dankArraySize = dankArray.length; // Take the size of the array, aka, possible positions
+            let randomNumberInRange = Math.floor(Math.random() * (+dankArraySize - +0) + +0); // Randomize an integer in range
+            original.value = dankArray[randomNumberInRange]; // Write the contents to the original textarea
+            generateDankness(); // and finally, - I N I T I A T E  - D A N K N E S S  -
+        }
+
+        /*
+        let subtitles = [ // Popular block-game style!
+            '*DirtyBuds not included.',
+            'Catchy, so cathy name',
+            'Get in there',
+            'Super Bassy',
+
+        ];
+        */
+
+    </script>
+</body>
+
+</html>
